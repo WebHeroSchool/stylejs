@@ -5,11 +5,52 @@
 Минимизируйте использование глобальных переменных. Глобальные переменные и функции могут быть перезаписаны другими скриптами.
 Вместо этого используйте локальные переменные и научитесь использовать замыкания.
 
+> Плохо
+```js
+const a = 1;
+const b = 5;
 
-## 2. Всегда объявляйте локальные переменные
+() => console.log(a + b);
+```
 
-Все переменные, используемые в функции, должны быть объявлены как локальные переменные.
-Локальные переменные должны быть объявлены с ключевым словом const или ключевым словом let, в противном случае они станут глобальными переменными.
+> Лучше
+```js
+() => {
+  const a = 1;
+  const b = 5;
+  console.log(a + b);
+  }
+```
+
+## 2. Используйте camelCase для именования функций и переменных.
+
+Причем первая буква должна быть строчной, а имя функции должно начинаться с глагола.
+
+> Плохо
+```js
+let firstname = "John";
+let Lastname = "Doe";
+
+let Price = 19.90;
+let Tax = 0.20;
+
+function CountPrice() {
+  let fullPrice = price + (price * tax);
+}
+```
+
+> Хорошо
+```js
+let firstName = "John";
+let lastName = "Doe";
+
+let price = 19.90;
+let tax = 0.20;
+
+function countPrice() {
+  let fullPrice = price + (price * tax);
+}
+```
 
 ## 3. Объявления сверху
 
@@ -23,7 +64,11 @@
 
 > Объявите в начале
 ```js
-var firstName, lastName, price, discount, fullPrice;
+let firstName;
+let lastName;
+let price; 
+let discount;
+let fullPrice;
 
 ```
 > Используйте после
@@ -42,7 +87,7 @@ fullPrice = price * 100 / discount;
 
 > Объявите в начале
 ```js
-var i;
+let i;
 ```
 > Используйте после
 ```js
@@ -60,13 +105,13 @@ for (i = 0; i < 5; i++) {
 
 > Объявите и инициализируйте в начале
 ```js
-var firstName = "",
-lastName = "",
-price = 0,
-discount = 0,
-fullPrice = 0,
-myArray = [],
-myObject = {};
+let firstName = "";
+let lastName = "";
+let price = 0;
+let discount = 0;
+let fullPrice = 0;
+let myArray = [];
+let myObject = {};
 ```
 
 ## 5. Никогда не объявляйте числовые (number), строковые (string) или логические (boolean) объекты
@@ -76,16 +121,16 @@ myObject = {};
 > Пример
 
 ```js
-var x = "John";             
-var y = new String("John");
+const x = "John";             
+const y = new String("John");
 (x === y) // является false, потому что x является строкой и y является объектом.
 ```
 
 > Или еще хуже:
 
 ```js
-var x = new String("John");             
-var y = new String("John");
+const x = new String("John");             
+const y = new String("John");
 (x == y) // является false, потому что вы не можете сравнивать объекты.
 ```
 
@@ -100,13 +145,13 @@ var y = new String("John");
 
 > Пример
 ```js
-var x1 = {};           // new object
-var x2 = "";           // new primitive string
-var x3 = 0;            // new primitive number
-var x4 = false;        // new primitive boolean
-var x5 = [];           // new array object
-var x6 = /()/;         // new regexp object
-var x7 = function(){}; // new function object
+const x1 = {};           // new object
+const x2 = "";           // new primitive string
+const x3 = 0;            // new primitive number
+const x4 = false;        // new primitive boolean
+const x5 = [];           // new array object
+const x6 = /()/;         // new regexp object
+const x7 = function(){}; // new function object
 ```
 
 ## 7. Использование параметров по умолчанию
